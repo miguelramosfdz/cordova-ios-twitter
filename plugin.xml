@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-    id="com.phonegap.plugins.twitterplugin"
+    id="com.smothers.plugins.twitterplugin"
     version="1.0.0">
 
     <name>Twitter Plugin for Cordova iOS</name>
