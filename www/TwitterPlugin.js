@@ -1,3 +1,4 @@
+var exec = require('cordova/exec');
 /**
  * @constructor
  */
@@ -149,15 +150,4 @@ Twitter.prototype.getReverseAuthToken = function(success, failure, options){
     cordova.exec(success, failure, "TwitterPlugin", "startTWReverseAuth", [options]);
 };
 
-// Plug in to Cordova
-cordova.addConstructor(function() {
-					   
-					   /* shim to work in 1.5 and 1.6  */
-						if (!window.Cordova) {
-						window.Cordova = cordova;
-						};
-						
-					   
-					   if(!window.plugins) window.plugins = {};
-					   window.plugins.twitter = new Twitter();
-					   });
+module.exports = new Twitter();
