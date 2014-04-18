@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-    id="com.smothers.plugins.twitterplugin"
-    version="1.0.0">
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.smothers.plugins.twitterplugin" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <name>Twitter Plugin for Cordova iOS</name>
+    <name>TwitterPlugin</name>
     <description>This plugin wraps the native iOS Accounts framework for Twitter.</description>
     <author>chris.smothers@gmail.com</author>
     <keywords>twitter,ios,cordova</keywords>
@@ -12,11 +10,9 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>    
 
-    <asset src="www/TwitterPlugin.js" target="plugins/TwitterPlugin.js" />
-
-    <js-module src="www/TwitterPlugin.js" name="TwitterPlugin">
-        <clobbers target="window.TwitterPlugin" />
-    </js-module>    
+    <js-module name="TwitterPlugin" src="www/TwitterPlugin.js">
+        <clobbers target="cordova.plugins.TwitterPlugin" />
+    </js-module>
 
     <platform name="ios">
 
