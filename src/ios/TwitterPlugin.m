@@ -77,8 +77,8 @@
             errorMessage = @"Image could not be added";
         }
     }
-	
-	if(urlAttach != nil) {
+    
+    if(urlAttach != nil) {
         ok = [tweetViewController addURL:[NSURL URLWithString:urlAttach]];
         if(!ok){
             errorMessage = @"URL too long";
@@ -132,15 +132,15 @@
             NSDictionary *dict = [dataString cdvjk_objectFromJSONString];
             jsResponse = [[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict] toSuccessCallbackString:callbackId];
             [dataString release];
-		}
-		else{
+        }
+        else{
             jsResponse = [[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR 
-                                        messageAsString:[NSString stringWithFormat:@"HTTP Error: %i", [urlResponse statusCode]]] 
-                            	  toErrorCallbackString:callbackId];
-		}
+                                        messageAsString:[NSString stringWithFormat:@"HTTP Error: %li", (long)[urlResponse statusCode]]]
+                                  toErrorCallbackString:callbackId];
+        }
         
-		[self performCallbackOnMainThreadforJS:jsResponse];        
-	}];
+        [self performCallbackOnMainThreadforJS:jsResponse];        
+    }];
     
     [postRequest release];
 }
@@ -176,7 +176,7 @@
     [accountStore requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error) {
         if(granted) {
             NSArray *accountsArray = [accountStore accountsWithAccountType:accountType];
-			// making assumption they only have one twitter account configured, should probably revist
+            // making assumption they only have one twitter account configured, should probably revist
             if([accountsArray count] > 0) {
                 TWRequest *postRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:url] parameters:nil requestMethod:TWRequestMethodGET];
                 [postRequest setAccount:[accountsArray objectAtIndex:0]];
@@ -190,7 +190,7 @@
                     }
                     else{
                         jsResponse = [[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR 
-                                                     messageAsString:[NSString stringWithFormat:@"HTTP Error: %i", [urlResponse statusCode]]] 
+                                                     messageAsString:[NSString stringWithFormat:@"HTTP Error: %li", (long)[urlResponse statusCode]]]
                                       toErrorCallbackString:callbackId];
                     }
                     
@@ -251,7 +251,7 @@
     [accountStore requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error) {
         if(granted) {
             NSArray *accountsArray = [accountStore accountsWithAccountType:accountType];
-			// making assumption they only have one twitter account configured, should probably revist
+            // making assumption they only have one twitter account configured, should probably revist
             if([accountsArray count] > 0) {
                 TWRequest *request = [[TWRequest alloc] initWithURL:[NSURL URLWithString:url] 
                                                             parameters:params
@@ -268,7 +268,7 @@
                     }
                     else{
                         jsResponse = [[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR 
-                                                        messageAsString:[NSString stringWithFormat:@"HTTP Error: %i", [urlResponse statusCode]]] 
+                                                        messageAsString:[NSString stringWithFormat:@"HTTP Error: %li", (long)[urlResponse statusCode]]]
                                       toErrorCallbackString:callbackId];
                     }
                     
@@ -303,9 +303,9 @@
     
     self.twitterConsumerKey = twitterKey;
     self.twitterConsumerSecret = twitterSecret;
-   	self.accountStore = [[ACAccountStore alloc] init];
+    self.accountStore = [[ACAccountStore alloc] init];
     ACAccountType *accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-	
+    
     [self.accountStore requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error)
      {
          if (!granted)
